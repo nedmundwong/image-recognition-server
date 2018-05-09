@@ -72,7 +72,7 @@ def save_uploaded_file():
 				print 'File uploaded successfully, please proceed to image filter.'
 				#copytemp(uploaded_file_path, user_extension)
 				print '<a href="/upload_files/'+newfilename+'">'+newfilename+'</a>'
-				return photourl
+				return uploaded_file_path
 	    except:
 			print 'Invalid file type. <br><a href="/">Back to Homepage</a>'
 			os.remove(uploaded_file_path)
