@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 import cgi
-import mysql.connector as conn
 import Cookie
 import datetime
 import os, inspect, sys
@@ -19,12 +18,8 @@ from general_function import *
 storage_dir = '/upload_files'
 UPLOAD_DIR = os.path.dirname(os.path.dirname(currentdir))+storage_dir
 
-#import login functions
-sys.path.insert(0,parentdir+'/login')
-from login_function import *
-
 def copytemp(uploaded_file_path, user_extension):
-	copyfile(uploaded_file_path, UPLOAD_DIR+'/temp_'+str(getUsername())+'.'+user_extension)
+	copyfile(uploaded_file_path, UPLOAD_DIR+'/temp_.'+user_extension)
 
 def save_uploaded_file():
     form = cgi.FieldStorage()
@@ -49,8 +44,7 @@ def save_uploaded_file():
     	return False
     else:
 	    # create new file name
-	    username = str(getUsername())
-	    newfilename = username+'_'+datetime.datetime.now().strftime("%Y%m%d_%H%M%S")+'.'+ user_extension
+	    newfilename = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")+'.'+ user_extension
 	    uploaded_file_path = os.path.join(UPLOAD_DIR, os.path.basename(newfilename))
 
 	    with file(uploaded_file_path, 'wb') as fout:
@@ -76,7 +70,8 @@ def save_uploaded_file():
 				return False
 			else:
 				print 'File uploaded successfully, please proceed to image filter.'
-				copytemp(uploaded_file_path, user_extension)
+				#copytemp(uploaded_file_path, user_extension)
+				print '<a href="/upload_files/'+newfilename+'">'+newfilename+'</a>'
 				return photourl
 	    except:
 			print 'Invalid file type. <br><a href="/">Back to Homepage</a>'

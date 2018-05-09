@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 from __future__ import division
 import cgi
-import mysql.connector as conn
 import Cookie
 import datetime
 import os, inspect
