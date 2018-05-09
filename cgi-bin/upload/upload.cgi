@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import cgi
+import os, inspect, sys
 
 from upload_function import *
 
@@ -15,7 +16,7 @@ from keras import backend as K
 sess = tf.Session()
 K.set_session(sess)
 
-model = load_model('./model4b.10-0.68.hdf5')
+model = load_model(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))+'/model4b.10-0.68.hdf5')
 
 x = tf.placeholder(tf.float32, shape=model.get_input_shape_at(0))
 
