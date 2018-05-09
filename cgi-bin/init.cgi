@@ -10,7 +10,11 @@ command = ("pip install --upgrade pip").split()
 process = subprocess.Popen(command, stdout=subprocess.PIPE)
 output, err = process.communicate()
 
-command = ("pip install tensorflow==1.0.1 && pip install keras==1.2.2").split()
+command = ("pip install tensorflow==1.0.1").split()
+process = subprocess.Popen(command, stdout=subprocess.PIPE)
+output, err = process.communicate()
+
+command = ("pip install keras==1.2.2").split()
 process = subprocess.Popen(command, stdout=subprocess.PIPE)
 output, err = process.communicate()
 
